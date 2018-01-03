@@ -11,10 +11,24 @@
 
         <script src="paper-full.js"></script>
         <script type="text/paperscript" canvas="myCanvas">
-            
+            var circles = [];
             function onKeyDown(event) {
-                new Path.Circle(new Point(100, 70), 50).fillColor = 'black';
+                var maxPoint = new Point(view.size.width, view.size.height);
+                var randomPoint = Point.random();
+                var point = maxPoint * randomPoint;
+                var newCircle = new Path.Circle(new Point(point, 10), 20a0);
+                newCircle.fillColor = "#88D0C1";
+                circles.push(newCircle);
+                console.log(view.size);
             }
+
+            function onFrame(event){
+                for(var i = 0; i < circles.length; i++){
+                    circles[i].fillColor.hue += 1
+                    circles[i].scale(.9);
+                }
+            }
+
         </script>
 
         <meta name="description" content="">
