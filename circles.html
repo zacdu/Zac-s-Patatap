@@ -10,14 +10,33 @@
         <link rel="stylesheet" href="circles.css">
 
         <script src="paper-full.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.1/howler.js"></script>
         <script type="text/paperscript" canvas="myCanvas">
             var circles = [];
+            var maxPoint = new Point(view.size.width, view.size.height);
+            var randomPoint = Point.random();
+            var point = maxPoint * randomPoint;
+            var newCircle = new Path.Circle(new Point(point, 10), 200);
+            newCircle.fillColor = "#88D0C1";
+
+            var sound = new Howl({
+                src: ["sounds/moon.mp3"]
+            });
+
+            var soundTwo = new Howl({
+                src: ["sounds/glimmer.mp3"]
+            });
+
             function onKeyDown(event) {
-                var maxPoint = new Point(view.size.width, view.size.height);
-                var randomPoint = Point.random();
-                var point = maxPoint * randomPoint;
-                var newCircle = new Path.Circle(new Point(point, 10), 200);
-                newCircle.fillColor = "#88D0C1";
+                if (event.key === "a"){
+                    sound.play();
+                    console.log("you pressed: a")
+                }
+                if (event.key === "s"){
+                    soundTwo.play();
+                    console.log("you pressed: s")
+                }
+
                 circles.push(newCircle);
                 console.log(view.size);
             }
